@@ -1,3 +1,5 @@
+name             "mediawiki"
+
 maintainer       "ccat"
 maintainer_email "deadlack@gmail.com"
 license          "Apache 2.0"
