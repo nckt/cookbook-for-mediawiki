@@ -10,6 +10,7 @@ version          "1.0.0"
 depends "mysql"
 depends "php"
 depends "apache2"
+depends "openssl"
 
 recipe "mediawiki","Install mediawiki"
 recipe "mediawiki::backup","Backup mediawiki by using cron"
