@@ -8,6 +8,7 @@
 ::Chef::Recipe.send(:include, Opscode::OpenSSL::Password)
 include_recipe "mysql::client"
 include_recipe "php"
+include_recipe "apache2::mod_php5"
 
 node.set_unless[:mediawiki][:installdbPass] = node[:mysql][:server_root_password]
 
@@ -87,3 +88,6 @@ directory node[:mediawiki][:directory]+"/mw-config" do
   only_if {node[:mediawiki][:access2config_folder]=="false"}
 end
 
+web_app 'mediawiki' do
+  template 'mediawiki.conf.erb'
+end
