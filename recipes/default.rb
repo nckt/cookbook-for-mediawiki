@@ -10,6 +10,10 @@ include_recipe "mysql::client"
 include_recipe "php"
 include_recipe "apache2::mod_php5"
 
+%w(php-mysql php-xml).each do |pkg|
+ package pkg
+end
+
 node.set_unless[:mediawiki][:installdbPass] = node[:mysql][:server_root_password]
 
 node.set_unless[:mediawiki][:wgDBpassword] = secure_password
