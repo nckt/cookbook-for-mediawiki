@@ -54,7 +54,6 @@ script "set_mediawiki" do
   chown -R #{node[:apache][:user]}:#{node[:apache][:group]} #{node[:mediawiki][:directory]}
   cd #{node[:mediawiki][:directory]}
   php maintenance/install.php --dbname #{node[:mediawiki][:wgDBname]} --dbpass #{node[:mediawiki][:wgDBpassword]}  --dbserver #{node[:mediawiki][:wgDBserver]} --dbuser #{node[:mediawiki][:wgDBuser]} --installdbpass #{node[:mediawiki][:installdbPass]}  --pass #{node[:mediawiki][:dbAdminPass]} --installdbuser root --lang #{node[:mediawiki][:wgLanguageCode]}  #{node[:mediawiki][:wgSitename]} #{node[:mediawiki][:dbAdminUser]}
-  mysql -u root -p#{node[:mediawiki][:installdbPass]} < /tmp/set_pass.sql
   mv LocalSettings.php LocalSettings_autogenerate.php
   EOH
 end
