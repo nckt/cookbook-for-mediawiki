@@ -6,9 +6,14 @@
 #
 
 ::Chef::Recipe.send(:include, Opscode::OpenSSL::Password)
-include_recipe "mysql::client"
 include_recipe "php"
 include_recipe "apache2::mod_php5"
+
+# CentOS7 default yum repository doesn't have mysql.
+# @TODO: If CentOS7, install mariadb.
+if platform?(:centos) && node[:platform_version].to_i < 7 then
+ include_recipe "mysql::client"
+end
 
 %w(php-mysql php-xml).each do |pkg|
  package pkg
