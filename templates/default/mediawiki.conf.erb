@@ -1,3 +1,6 @@
 PHPIniDir "/etc"
 
 Alias /<%= node[:mediawiki][:wgScriptPath] %> <%= node[:mediawiki][:directory] %>
+<Directory "<%= node[:mediawiki][:directory] %>">
+	Require all granted
+</Directory>
